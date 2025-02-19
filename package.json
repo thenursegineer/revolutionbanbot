@@ -1,0 +1,18 @@
+{
+  "name": "revolutionbanbot",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "z3bra",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "setup": "pm2 startup systemd",
+    "start": "pm2 start index.js --name revolution-ban-bot && pm2 save && echo 'revolution-ban-bot is running.'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "discord.js": "^14.18.0",
+    "dotenv": "^16.4.7"
+  }
+}
