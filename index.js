@@ -2,6 +2,7 @@ import { Client, GatewayIntentBits } from 'discord.js';
 import { config } from 'dotenv';
 import fs from 'fs';
 import { checkAndBanMembers } from './checkAndBan.js';
+import { importBans } from './importBans.js';
 
 // Load environment variables from .env file
 config();
@@ -36,8 +37,10 @@ const client = new Client({
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}! Running initial ban check...`);
   checkAndBanMembers(client, bannedUserIds);
-  // Run daily (24 hours = 86400000 ms)
-  setInterval(checkAndBanMembers, 86400000);
+  importBans(client, bannedUserIds);
+  const daily = 86400000;
+  setInterval(checkAndBanMembers, daily);
+  setInterval(importBans, daily);
   });
 
 client.on('guildMemberAdd', async (member) => {
