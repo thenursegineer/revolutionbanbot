@@ -1,4 +1,4 @@
-export const importBans(async (client, currentBanSet) => {
+export const importBans = (async (client, currentBanSet) => {
   let banListTxt = '';
   try {
     for(const [guildId, guild] of client.guilds.cache) {
